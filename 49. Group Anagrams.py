@@ -18,21 +18,13 @@
 print(groupAnagrams(["eat","tea","tan","ate","nat","bat"]))"""
 
 def groupAnagrams(strs: list[str]) -> list[list[str]]:
-    words = strs
-    sorted_words = []
-    sorted_words_1 = []
-    output = []
-    for word in words:
-        char_list = [char for char in word]
-        sorted_char_list = sorted(char_list)
-        sorted_words.append(sorted_char_list)
+    anagram_map = defaultdict(list)
+        
+    for word in strs:
+        sorted_word = ''.join(sorted(word))
+        anagram_map[sorted_word].append(word)
     
-    first_word = sorted_words[0]
-    for word in sorted_words:
-        if word == first_word:
-            output.append(words[sorted_words_1.index(word)])  
-        sorted_words.remove(word)  
-    return output
+    return list(anagram_map.values())
         
 
 print(groupAnagrams(["eat","tea","tan","ate","nat","bat"]))
